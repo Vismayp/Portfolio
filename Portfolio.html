@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vismay P - Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%232563eb'/%3E%3Cpath d='M35 25 L35 75 M35 25 L65 25 A15 15 0 0 1 65 55 L35 55' stroke='white' fill='none' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      body {
+        background: #0a0a0a;
+        color: white;
+        min-height: 100vh;
+        padding: 2rem;
+      }
+
+      .container {
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 2rem;
+      }
+
+      .profile-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        grid-column: 2;
+      }
+
+      .image-container {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      .image-container::before {
+        content: "";
+        position: absolute;
+        inset: -5px;
+        background: linear-gradient(
+          45deg,
+          #00ffff,
+          #ff00ff,
+          #00ff00,
+          #ff0000,
+          #00ffff
+        );
+        animation: rotate 4s linear infinite;
+        border-radius: 50%;
+      }
+
+      .image-container::after {
+        content: "";
+        position: absolute;
+        inset: 5px;
+        background: #0a0a0a;
+        border-radius: 50%;
+      }
+
+      .profile-image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        z-index: 1;
+      }
+
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .social-icon i {
+        color: white;
+        font-size: 1.2rem;
+        z-index: 1;
+      }
+
+      .social-icon.linkedin {
+        background-color: #007bb5;
+      }
+
+      .social-icon.github {
+        background-color: #24292e;
+      }
+
+      .social-icon.instagram {
+        background-color: #e4405f;
+      }
+
+      .social-icon.whatsapp {
+        background-color: #25d366;
+      }
+
+      .social-icon:hover {
+        transform: scale(1.1);
+      }
+
+      .content-sections {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        grid-column: 1;
+      }
+
+      .section-content {
+        position: relative;
+        padding: 2rem;
+        background: #0a0a0a;
+      }
+
+      .animated-border {
+        position: relative;
+        padding: 2rem;
+        background: #0a0a0a;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+
+      .animated-border::before {
+        content: "";
+        position: absolute;
+        inset: -5px;
+        background: linear-gradient(
+          45deg,
+          #00ffff,
+          #ff00ff,
+          #00ff00,
+          #ff0000,
+          #00ffff
+        );
+        animation: rotate 4s linear infinite;
+      }
+
+      .animated-border::after {
+        content: "";
+        position: absolute;
+        inset: 5px;
+        background: #0a0a0a;
+        border-radius: 15px;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      h3 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .skills {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+
+      .skill {
+        padding: 0.5rem 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        font-size: 0.9rem;
+      }
+
+/* Update container width for projects section */
+/* Project section base styles */
+.projects-section {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin: 2rem auto;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.project-card {
+  position: relative;
+  height: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Animation and border styles */
+.project-card::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ff00ff, #00ffff, #00ff00);
+  animation: retroGrid 3s linear infinite;
+  background-size: 200%;
+}
+
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: #0a0a0a;
+  border-radius: 12px;
+}
+
+.project-content {
+  position: relative;
+  z-index: 2;
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: all 0.3s ease;
+}
+
+.project-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  transition: height 0.3s ease;
+}
+
+.project-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.project-description {
+  font-size: 0.9rem;
+  color: #ccc;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s;
+}
+
+/* Updated hover effects with height adjustment */
+.project-card:hover {
+  height: auto;
+  min-height: 400px; /* Ensures minimum height on hover */
+  transform: scale(1.35);
+  z-index: 100;
+}
+
+.project-card:hover .project-content {
+  height: auto;
+}
+
+.project-card:hover .project-image {
+  height: 200px;
+}
+
+.project-card:hover .project-description {
+  opacity: 1;
+  transform: translateY(0);
+  height: auto;
+  overflow: visible;
+}
+
+/* Animation keyframes */
+@keyframes retroGrid {
+  0% { background-position: 0 0; }
+  50% { background-position: 100% 0; }
+  100% { background-position: 0 0; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .project-card:hover {
+    transform: scale(1.25);
+  }
+}
+
+@media (max-width: 768px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .project-card:hover {
+    transform: scale(1.15);
+  }
+}
+      header {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  padding: 1rem 2rem;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  margin-bottom: 2rem;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  color: black;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background: white;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .contact-section {
+        grid-column: 1;
+        margin-top: 2rem;
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .form-input {
+        padding: 0.8rem;
+        border: none;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-size: 1rem;
+      }
+
+      .form-input:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      textarea.form-input {
+        min-height: 150px;
+        resize: vertical;
+      }
+
+      .submit-btn {
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(45deg, #00ffff, #ff00ff);
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem;
+        margin-top: 4rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer-text {
+        background: linear-gradient(45deg, #00ffff, #ff00ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 1.1rem;
+      }
+      body {
+  padding-top: 6rem; /* Increased padding to account for header and margin */
+}
+
+      @keyframes retroGrid {
+        0% {
+          background-position: 0 0;
+        }
+        50% {
+          background-position: 100% 0;
+        }
+        100% {
+          background-position: 0 0;
+        }
+      }
+      
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="nav-container">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="content-sections">
+        <div class="animated-border"  id="about">
+          <div class="section-content">
+            <h1>Vismay P</h1>
+            <h3>About Me</h3>
+            <p>
+              I am a graduate of NITK Surathkal with a degree in Information
+              Technology. I specialize in web scraping and automation, with
+              expertise in tools like Selenium, Requests library, Scrapy, and
+              other essential technologies.
+            </p>
+            <p>
+              As a Full-Stack Developer, I am passionate about crafting
+              beautiful and functional web experiences. I excel in modern web
+              technologies and prioritize user-centric design. I am eager to
+              embrace new challenges and opportunities to grow.
+            </p>
+          </div>
+        </div>
+
+        <div class="animated-border" id="skills">
+          <div class="section-content">
+            <h3>Skills</h3>
+            <div class="skills">
+              <span class="skill">Web Scraping</span>
+              <span class="skill">Selenium</span>
+              <span class="skill">Requests</span>
+              <span class="skill">API</span>
+              <span class="skill">React</span>
+              <span class="skill">Node.js</span>
+              <span class="skill">Express.js</span>
+              <span class="skill">MongoDB</span>
+              <span class="skill">Python</span>
+              <span class="skill">Django</span>
+              <span class="skill">Postgres</span>
+              <span class="skill">XML</span>
+              <span class="skill">Flutter</span>
+              <span class="skill">Automation/Bots</span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <div class="image-container">
+          <img src="images/profile.jpg" alt="Profile" class="profile-image" />
+        </div>
+        <div class="social-icons">
+          <a
+            href="https://www.linkedin.com/in/vismay-p-a5a061223/"
+            class="social-icon linkedin"
+            target="_blank"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a
+            href="https://github.com/Vismayp"
+            class="social-icon github"
+            target="_blank"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/vismayp992"
+            class="social-icon instagram"
+            target="_blank"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a
+            href="https://wa.me/+919008102705"
+            class="social-icon whatsapp"
+            target="_blank"
+          >
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="animated-border projects-section" id="projects">
+        <div class="section-content">
+          <h3>Projects</h3>
+          <div class="project-grid">
+            <div class="project-card">
+              <div class="project-content">
+                <img
+                  src="images/Badmiton.jpg"
+                  alt="Project 1"
+                  class="project-image"
+                />
+                <h4 class="project-title">Badmiton Court Reservation Bot</h4>
+                <p class="project-description">
+                  Automated data extraction tool built with Python and Selenium.
+                  Uses scheduler to schedule the trigger when the court is available.
+                  Books the court within split seconds when available.
+                </p>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-content">
+                <img
+                  src="images/Rentals.jpg"
+                  alt="Project 2"
+                  class="project-image"
+                />
+                <h4 class="project-title">Rental Properties Scrapping</h4>
+                <p class="project-description">
+                  Scrapped 4000+ properties from the site and gather all the details and return the scrapped information in csv
+                </p>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-content">
+                <img
+                  src="images/GST Automation.jpg"
+                  alt="Project 3"
+                  class="project-image"
+                />
+                <h4 class="project-title">Invoices Downloader</h4>
+                <p class="project-description">
+                  Built an Application that has OTP Verification and scrapes invoices data from various Ecommerce Sites and also Downloads GSTR dataa from the government website bypassing captcha
+                </p>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-content">
+                <img
+                  src="images/Clothing.jpg"
+                  alt="Project 3"
+                  class="project-image"
+                />
+                <h4 class="project-title">Clothing Scrapper</h4>
+                <p class="project-description">
+                  Clothing Websites scrapping to gather all the necessary information along with the images and return the csv file.
+                </p>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-content">
+                <img
+                  src="images/Multiplier.jpg"
+                  alt="Project 3"
+                  class="project-image"
+                />
+                <h4 class="project-title">Multiplier Bot</h4>
+                <p class="project-description">
+                  Created a Multiplier Bot that will monitor a game in a website and trigger a telegram bot to send notification when specific condition is met
+                </p>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-content">
+                <img
+                  src="images/Esty.jpg"
+                  alt="Project 3"
+                  class="project-image"
+                />
+                <h4 class="project-title">Esty Review Downloader</h4>
+                <p class="project-description">
+                  Created a Script that will take product link as input and Scrapes the entire review section of the product
+                </p>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-content">
+                <img
+                  src="images/Yupoo.jpg"
+                  alt="Project 3"
+                  class="project-image"
+                />
+                <h4 class="project-title">Yupoo Album Downloader</h4>
+                <p class="project-description">
+                  The Script that takes the Album Link as input and download all the Album images locally.
+                </p>
+              </div>
+            </div>
+
+
+            <div class="project-card">
+              <div class="project-content">
+                <img
+                  src="images/fasalrin.jpg"
+                  alt="Project 3"
+                  class="project-image"
+                />
+                <h4 class="project-title">FasalRin Automation</h4>
+                <p class="project-description">
+                  Wrote the Automation Script that fills the Information Automatically by taking information from the input excel and upon successful submission stores the application number in a csv with error logs
+                </p>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-content">
+                <img
+                  src="images/image_editor.jpg"
+                  alt="Project 3"
+                  class="project-image"
+                />
+                <h4 class="project-title">Enhanced Image Editor</h4>
+                <p class="project-description">
+                  Built Custom Enhanced Image Editor that supports conversion of images to different formats resizing and editing images using python and django
+                </p>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-content">
+                <img
+                  src="images/quiz.jpg"
+                  alt="Project 3"
+                  class="project-image"
+                />
+                <h4 class="project-title">Quizzer Web App</h4>
+                <p class="project-description">
+                  Built Custom quiz generator app that uses Gemini AI to build custom questions in realtime and one can take MCQ Quiz with the preset timer. The website is live on vercel
+                </p>
+              </div>
+            </div>
+
+
+            <div class="project-card">
+              <div class="project-content">
+                <img
+                  src="images/Gemini.jpg"
+                  alt="Project 3"
+                  class="project-image"
+                />
+                <h4 class="project-title">Auto Answer Generator (Exam)</h4>
+                <p class="project-description">
+                  Wrote a python script that uploads the Model Exam Questions to Gemini and gets all the questions answered with Gemini Pro and Stores the response in a document of spectic template. Answer key generated for around 800+ papers  
+                </p>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-content">
+                <img
+                  src="images/Multiplication.jpg"
+                  alt="Project 3"
+                  class="project-image"
+                />
+                <h4 class="project-title">Multiplication Practice App</h4>
+                <p class="project-description">
+                  A flutter app built for kids to practice multiplication with various levels of difficulty and present timer. Live in Playstore.
+                </p>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="animated-border contact-section" id="contact">
+        <div class="section-content">
+          <h3>Contact Me</h3>
+          <form class="contact-form" action="mailto:vismayp250703@gmail.com" method="POST" enctype="text/plain">
+            <div class="form-group">
+              <input type="text" name="name" placeholder="Your Name" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <input type="email" name="email" placeholder="Your Email" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <textarea name="message" placeholder="Your Message" class="form-input" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+      
+      <footer>
+        <p class="footer-text">Created with ❤️ by Vismay</p>
+      </footer>
+      </div>
+      </body>
+      </html>
+
