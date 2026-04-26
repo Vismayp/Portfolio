@@ -1,761 +1,1702 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <title>Vismay P - Portfolio</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio of Vismay P, Software Engineer at Verint and NITK Surathkal IT graduate building backend systems, automation, AI tooling, desktop apps, and live web products."
+    />
+    <title>Vismay P | Cyberpunk Portfolio</title>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%232563eb'/%3E%3Cpath d='M35 25 L35 75 M35 25 L65 25 A15 15 0 0 1 65 55 L35 55' stroke='white' fill='none' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='22' fill='%23060a14'/%3E%3Cpath d='M24 26h32c18 0 31 12 31 29S74 84 56 84H42v18H24V26zm18 16v26h13c9 0 14-5 14-13s-5-13-14-13H42z' fill='%2300f5ff'/%3E%3Cpath d='M84 24h12v72H84z' fill='%23ff2bd6'/%3E%3C/svg%3E"
+    />
     <style>
+      :root {
+        --bg: #05070f;
+        --panel: rgba(7, 13, 28, 0.82);
+        --panel-strong: rgba(12, 20, 42, 0.94);
+        --line: rgba(0, 245, 255, 0.32);
+        --line-hot: rgba(255, 43, 214, 0.48);
+        --text: #eef8ff;
+        --muted: #a8b8cf;
+        --cyan: #00f5ff;
+        --pink: #ff2bd6;
+        --lime: #b7ff42;
+        --amber: #ffd166;
+        --shadow: 0 24px 70px rgba(0, 0, 0, 0.46);
+      }
+
       * {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
-        font-family: "Arial", sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
-        background: #0a0a0a;
-        color: white;
         min-height: 100vh;
-        padding: 2rem;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background:
+          radial-gradient(
+            circle at 14% 12%,
+            rgba(0, 245, 255, 0.18),
+            transparent 28rem
+          ),
+          radial-gradient(
+            circle at 82% 8%,
+            rgba(255, 43, 214, 0.14),
+            transparent 30rem
+          ),
+          linear-gradient(180deg, #03040a 0%, var(--bg) 48%, #080510 100%);
+        color: var(--text);
+        overflow-x: hidden;
       }
 
-      .container {
-        max-width: 1200px;
-        width: 100%;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr 300px;
-        gap: 2rem;
-      }
-
-      .profile-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
-        grid-column: 2;
-      }
-
-      .image-container {
-        position: relative;
-        width: 300px;
-        height: 300px;
-        border-radius: 50%;
-        overflow: hidden;
-      }
-
-      .image-container::before {
+      body::before {
         content: "";
-        position: absolute;
-        inset: -5px;
-        background: linear-gradient(
-          45deg,
-          #00ffff,
-          #ff00ff,
-          #00ff00,
-          #ff0000,
-          #00ffff
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(0, 245, 255, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 43, 214, 0.05) 1px, transparent 1px);
+        background-size: 48px 48px;
+        mask-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.75),
+          transparent 92%
         );
-        animation: rotate 4s linear infinite;
-        border-radius: 50%;
       }
 
-      .image-container::after {
+      body::after {
         content: "";
-        position: absolute;
-        inset: 5px;
-        background: #0a0a0a;
-        border-radius: 50%;
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background: repeating-linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.03) 0,
+          rgba(255, 255, 255, 0.03) 1px,
+          transparent 1px,
+          transparent 7px
+        );
+        mix-blend-mode: soft-light;
+        opacity: 0.22;
       }
 
-      .profile-image {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        object-fit: cover;
-        z-index: 1;
+      a {
+        color: inherit;
+        text-decoration: none;
       }
 
-      .social-icons {
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(18px);
+        background: rgba(5, 7, 15, 0.72);
+        border-bottom: 1px solid rgba(0, 245, 255, 0.18);
+      }
+
+      .nav {
+        min-height: 70px;
         display: flex;
-        justify-content: center;
         align-items: center;
-        gap: 1rem;
-        margin-top: 1rem;
+        justify-content: space-between;
+        gap: 20px;
       }
 
-      .social-icon {
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      .brand-mark {
         width: 40px;
         height: 40px;
-        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: #061019;
+        background: linear-gradient(135deg, var(--cyan), var(--pink));
+        clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
+        box-shadow: 0 0 26px rgba(0, 245, 255, 0.34);
+      }
+
+      .nav-links {
         display: flex;
-        justify-content: center;
         align-items: center;
-        text-decoration: none;
-        transition: all 0.3s ease;
+        gap: 8px;
       }
 
-      .social-icon i {
-        color: white;
-        font-size: 1.2rem;
-        z-index: 1;
+      .nav-links a,
+      .mini-link {
+        min-height: 38px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 0 14px;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        color: var(--muted);
+        font-size: 0.92rem;
+        transition:
+          border-color 180ms ease,
+          color 180ms ease,
+          background 180ms ease;
       }
 
-      .social-icon.linkedin {
-        background-color: #007bb5;
+      .nav-links a:hover,
+      .mini-link:hover {
+        color: var(--text);
+        border-color: var(--line);
+        background: rgba(0, 245, 255, 0.08);
       }
 
-      .social-icon.github {
-        background-color: #24292e;
+      .hero {
+        min-height: calc(100vh - 70px);
+        display: grid;
+        grid-template-columns: minmax(0, 1.04fr) minmax(340px, 0.76fr);
+        align-items: center;
+        gap: 42px;
+        padding: 52px 0 34px;
       }
 
-      .social-icon.instagram {
-        background-color: #e4405f;
+      .kicker {
+        width: fit-content;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        margin-bottom: 22px;
+        color: var(--cyan);
+        border: 1px solid rgba(0, 245, 255, 0.34);
+        border-radius: 6px;
+        background: rgba(0, 245, 255, 0.08);
+        font:
+          700 0.78rem/1.2 ui-monospace,
+          SFMono-Regular,
+          Consolas,
+          monospace;
+        text-transform: uppercase;
       }
 
-      .social-icon.whatsapp {
-        background-color: #25d366;
-      }
-
-      .social-icon:hover {
-        transform: scale(1.1);
-      }
-
-      .content-sections {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        grid-column: 1;
-      }
-
-      .section-content {
-        position: relative;
-        padding: 2rem;
-        background: #0a0a0a;
-      }
-
-      .animated-border {
-        position: relative;
-        padding: 2rem;
-        background: #0a0a0a;
-        border-radius: 20px;
-        overflow: hidden;
-      }
-
-      .animated-border::before {
-        content: "";
-        position: absolute;
-        inset: -5px;
-        background: linear-gradient(
-          45deg,
-          #00ffff,
-          #ff00ff,
-          #00ff00,
-          #ff0000,
-          #00ffff
-        );
-        animation: rotate 4s linear infinite;
-      }
-
-      .animated-border::after {
-        content: "";
-        position: absolute;
-        inset: 5px;
-        background: #0a0a0a;
-        border-radius: 15px;
-      }
-
-      @keyframes rotate {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--lime);
+        box-shadow: 0 0 18px var(--lime);
       }
 
       h1 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        position: relative;
-        z-index: 1;
+        max-width: 780px;
+        font-size: clamp(3rem, 6.2vw, 5.9rem);
+        line-height: 0.9;
+        letter-spacing: 0;
+        text-transform: uppercase;
       }
 
-      h3 {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
+      .glitch {
         position: relative;
-        z-index: 1;
+        display: inline-block;
+        text-shadow:
+          4px 0 rgba(255, 43, 214, 0.68),
+          -4px 0 rgba(0, 245, 255, 0.64);
       }
 
-      p {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        margin-bottom: 1rem;
-        position: relative;
-        z-index: 1;
+      .subtitle {
+        max-width: 740px;
+        margin: 26px 0 28px;
+        color: #c8d7e7;
+        font-size: clamp(1.02rem, 2vw, 1.24rem);
+        line-height: 1.72;
       }
 
-      .skills {
+      .hero-strip {
         display: flex;
-        gap: 1rem;
         flex-wrap: wrap;
-        position: relative;
-        z-index: 1;
+        gap: 10px;
+        margin: -10px 0 26px;
       }
 
-      .skill {
-        padding: 0.5rem 1rem;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        font-size: 0.9rem;
+      .hero-strip span {
+        min-height: 34px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 11px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.055);
+        color: #dceaff;
+        font:
+          800 0.78rem/1 ui-monospace,
+          SFMono-Regular,
+          Consolas,
+          monospace;
+        text-transform: uppercase;
       }
 
-/* Update container width for projects section */
-/* Project section base styles */
-.projects-section {
-  grid-column: 1 / -1;
-  width: 100%;
-  margin: 2rem auto;
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  position: relative;
-  z-index: 1;
-}
-
-.project-card {
-  position: relative;
-  height: 300px;
-  border-radius: 15px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-/* Animation and border styles */
-.project-card::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, #ff00ff, #00ffff, #00ff00);
-  animation: retroGrid 3s linear infinite;
-  background-size: 200%;
-}
-
-.project-card::after {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  background: #0a0a0a;
-  border-radius: 12px;
-}
-
-.project-content {
-  position: relative;
-  z-index: 2;
-  padding: 1.5rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  transition: all 0.3s ease;
-}
-
-.project-image {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-  transition: height 0.3s ease;
-}
-
-.project-title {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: white;
-}
-
-.project-description {
-  font-size: 0.9rem;
-  color: #ccc;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.3s;
-}
-
-/* Updated hover effects with height adjustment */
-.project-card:hover {
-  height: auto;
-  min-height: 400px; /* Ensures minimum height on hover */
-  transform: scale(1.35);
-  z-index: 100;
-}
-
-.project-card:hover .project-content {
-  height: auto;
-}
-
-.project-card:hover .project-image {
-  height: 200px;
-}
-
-.project-card:hover .project-description {
-  opacity: 1;
-  transform: translateY(0);
-  height: auto;
-  overflow: visible;
-}
-
-/* Animation keyframes */
-@keyframes retroGrid {
-  0% { background-position: 0 0; }
-  50% { background-position: 100% 0; }
-  100% { background-position: 0 0; }
-}
-
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-  .project-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .project-card:hover {
-    transform: scale(1.25);
-  }
-}
-
-@media (max-width: 768px) {
-  .project-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .project-card:hover {
-    transform: scale(1.15);
-  }
-}
-      header {
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  padding: 1rem 2rem;
-  background: rgba(10, 10, 10, 0.95);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  margin-bottom: 2rem;
-}
-
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: flex-end;
-  gap: 1.5rem;
-}
-
-.nav-link {
-  color: black;
-  text-decoration: none;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  background: white;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-}
-
-.nav-link:hover {
-  background: #f0f0f0;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
-}
-
-      .nav-link:hover::after {
-        width: 100%;
-      }
-
-      .contact-section {
-        grid-column: 1;
-        margin-top: 2rem;
-      }
-
-      .contact-form {
+      .actions {
         display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        position: relative;
-        z-index: 1;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 28px;
       }
 
-      .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
+      .button {
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 18px;
+        border-radius: 7px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        font-weight: 800;
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          box-shadow 180ms ease;
       }
 
-      .form-input {
-        padding: 0.8rem;
-        border: none;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.1);
-        color: white;
-        font-size: 1rem;
+      .button.primary {
+        color: #021018;
+        background: linear-gradient(135deg, var(--cyan), var(--lime));
+        border-color: transparent;
+        box-shadow: 0 0 34px rgba(0, 245, 255, 0.26);
       }
 
-      .form-input:focus {
-        outline: none;
-        background: rgba(255, 255, 255, 0.15);
-      }
-
-      textarea.form-input {
-        min-height: 150px;
-        resize: vertical;
-      }
-
-      .submit-btn {
-        padding: 1rem 2rem;
-        border: none;
-        border-radius: 10px;
-        background: linear-gradient(45deg, #00ffff, #ff00ff);
-        color: white;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: transform 0.3s;
-      }
-
-      .submit-btn:hover {
+      .button:hover {
         transform: translateY(-2px);
+        border-color: var(--line);
+        box-shadow: 0 0 24px rgba(0, 245, 255, 0.16);
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        max-width: 760px;
+      }
+
+      .metric,
+      .panel,
+      .project-card {
+        position: relative;
+        background: var(--panel);
+        border: 1px solid rgba(0, 245, 255, 0.18);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .metric::before,
+      .panel::before,
+      .project-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+        background: linear-gradient(
+          135deg,
+          rgba(0, 245, 255, 0.1),
+          transparent 34%,
+          rgba(255, 43, 214, 0.08)
+        );
+      }
+
+      .metric {
+        min-height: 96px;
+        padding: 18px;
+        border-radius: 8px;
+      }
+
+      .metric strong {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--cyan);
+        font:
+          800 1.35rem/1 ui-monospace,
+          SFMono-Regular,
+          Consolas,
+          monospace;
+      }
+
+      .metric span {
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.45;
+      }
+
+      .portrait-frame {
+        position: relative;
+        isolation: isolate;
+      }
+
+      .portrait-frame::before {
+        content: "";
+        position: absolute;
+        inset: -18px;
+        z-index: -1;
+        background:
+          linear-gradient(135deg, rgba(0, 245, 255, 0.48), transparent 42%),
+          linear-gradient(315deg, rgba(255, 43, 214, 0.42), transparent 42%);
+        clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+        filter: blur(14px);
+        opacity: 0.78;
+      }
+
+      .portrait {
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 245, 255, 0.4);
+        background: #080f18;
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.62);
+        clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%);
+      }
+
+      .portrait img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+      }
+
+      .id-card {
+        width: min(86%, 360px);
+        margin: -58px auto 0;
+        padding: 18px;
+        position: relative;
+        z-index: 2;
+        border: 1px solid rgba(255, 43, 214, 0.42);
+        border-radius: 8px;
+        background: rgba(7, 12, 25, 0.88);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.38);
+      }
+
+      .id-card small {
+        display: block;
+        color: var(--pink);
+        font:
+          800 0.74rem/1.3 ui-monospace,
+          SFMono-Regular,
+          Consolas,
+          monospace;
+        text-transform: uppercase;
+      }
+
+      .id-card strong {
+        display: block;
+        margin: 6px 0;
+        font-size: 1.35rem;
+      }
+
+      .id-card p {
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      section {
+        scroll-margin-top: 92px;
+        padding: 48px 0;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 28px;
+        margin-bottom: 22px;
+      }
+
+      .eyebrow {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--pink);
+        font:
+          800 0.78rem/1 ui-monospace,
+          SFMono-Regular,
+          Consolas,
+          monospace;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .section-copy {
+        max-width: 620px;
+        color: var(--muted);
+        line-height: 1.68;
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+        gap: 18px;
+      }
+
+      .panel {
+        border-radius: 8px;
+        padding: 24px;
+      }
+
+      .panel h3 {
+        margin-bottom: 12px;
+        color: var(--cyan);
+        font-size: 1.08rem;
+        text-transform: uppercase;
+      }
+
+      .panel p,
+      .panel li {
+        color: #bfd0e1;
+        line-height: 1.72;
+      }
+
+      .signal-list {
+        display: grid;
+        gap: 14px;
+        list-style: none;
+      }
+
+      .signal-list li {
+        padding-left: 18px;
+        border-left: 2px solid rgba(0, 245, 255, 0.36);
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 14px;
+      }
+
+      .skill-block {
+        min-height: 188px;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        min-height: 32px;
+        padding: 0 10px;
+        border-radius: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.055);
+        color: #d7e8f6;
+        font-size: 0.88rem;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .project-card {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        border-radius: 8px;
+      }
+
+      .project-media {
+        height: 178px;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(0, 245, 255, 0.16);
+      }
+
+      .project-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(1.12) contrast(1.04);
+        transition: transform 220ms ease;
+      }
+
+      .project-card:hover .project-media img {
+        transform: scale(1.045);
+      }
+
+      .project-media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 20%,
+          rgba(5, 7, 15, 0.76)
+        );
+      }
+
+      .project-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 18px;
+      }
+
+      .project-top {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .project-title {
+        font-size: 1.14rem;
+        line-height: 1.25;
+      }
+
+      .project-tag {
+        flex: 0 0 auto;
+        padding: 5px 8px;
+        color: var(--lime);
+        border: 1px solid rgba(183, 255, 66, 0.34);
+        border-radius: 5px;
+        font:
+          800 0.68rem/1 ui-monospace,
+          SFMono-Regular,
+          Consolas,
+          monospace;
+        text-transform: uppercase;
+      }
+
+      .project-body p {
+        color: var(--muted);
+        line-height: 1.62;
+        font-size: 0.96rem;
+      }
+
+      .project-focus {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+
+      .project-focus span {
+        min-height: 26px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 8px;
+        border: 1px solid rgba(255, 209, 102, 0.26);
+        border-radius: 5px;
+        color: #ffe7a8;
+        background: rgba(255, 209, 102, 0.07);
+        font:
+          800 0.68rem/1 ui-monospace,
+          SFMono-Regular,
+          Consolas,
+          monospace;
+        text-transform: uppercase;
+      }
+
+      .project-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: auto;
+      }
+
+      .project-links a {
+        min-height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 0 11px;
+        border-radius: 5px;
+        border: 1px solid rgba(0, 245, 255, 0.22);
+        color: #dffaff;
+        background: rgba(0, 245, 255, 0.06);
+        font-weight: 800;
+        font-size: 0.85rem;
+      }
+
+      .timeline {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .timeline .panel {
+        min-height: 170px;
+      }
+
+      .timeline strong {
+        display: block;
+        margin-bottom: 10px;
+        color: var(--amber);
+        font:
+          800 0.82rem/1 ui-monospace,
+          SFMono-Regular,
+          Consolas,
+          monospace;
+        text-transform: uppercase;
+      }
+
+      .experience-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+        gap: 16px;
+      }
+
+      .role-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 14px 0 18px;
+      }
+
+      .role-meta span {
+        min-height: 30px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 10px;
+        border-radius: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: #d7e8f6;
+        background: rgba(255, 255, 255, 0.055);
+        font:
+          800 0.76rem/1 ui-monospace,
+          SFMono-Regular,
+          Consolas,
+          monospace;
+        text-transform: uppercase;
+      }
+
+      .site-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .site-card {
+        min-height: 220px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid rgba(0, 245, 255, 0.18);
+        background:
+          linear-gradient(135deg, rgba(255, 43, 214, 0.11), transparent 42%),
+          rgba(9, 15, 31, 0.8);
+        box-shadow: var(--shadow);
+      }
+
+      .site-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 9px;
+      }
+
+      .site-card p {
+        color: var(--muted);
+        line-height: 1.55;
+        font-size: 0.92rem;
+      }
+
+      .site-card a {
+        width: fit-content;
+        min-height: 36px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 11px;
+        border-radius: 5px;
+        border: 1px solid rgba(0, 245, 255, 0.24);
+        color: #dffaff;
+        background: rgba(0, 245, 255, 0.06);
+        font-weight: 800;
+        font-size: 0.85rem;
+      }
+
+      .archive-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .archive-item {
+        min-height: 172px;
+        display: grid;
+        align-content: space-between;
+        padding: 18px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background:
+          linear-gradient(135deg, rgba(0, 245, 255, 0.08), transparent 48%),
+          rgba(9, 15, 31, 0.76);
+        box-shadow: var(--shadow);
+      }
+
+      .archive-item i {
+        color: var(--cyan);
+        font-size: 1.35rem;
+      }
+
+      .archive-item h3 {
+        margin: 16px 0 8px;
+        font-size: 1rem;
+      }
+
+      .archive-item p {
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.55;
       }
 
       footer {
-        text-align: center;
-        padding: 2rem;
-        margin-top: 4rem;
-        position: relative;
-        z-index: 1;
+        padding: 34px 0 46px;
+        color: var(--muted);
+        border-top: 1px solid rgba(0, 245, 255, 0.14);
       }
 
-      .footer-text {
-        background: linear-gradient(45deg, #00ffff, #ff00ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-size: 1.1rem;
+      .footer-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: wrap;
       }
-      body {
-  padding-top: 6rem; /* Increased padding to account for header and margin */
-}
 
-      @keyframes retroGrid {
-        0% {
-          background-position: 0 0;
+      @media (max-width: 980px) {
+        .hero,
+        .about-grid {
+          grid-template-columns: 1fr;
         }
-        50% {
-          background-position: 100% 0;
+
+        .portrait-frame {
+          width: min(520px, 100%);
+          margin: 0 auto;
         }
-        100% {
-          background-position: 0 0;
+
+        .skills-grid,
+        .projects-grid,
+        .timeline,
+        .archive-grid,
+        .experience-grid,
+        .site-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
-      
+
+      @media (max-width: 680px) {
+        .shell {
+          width: min(100% - 22px, 1180px);
+        }
+
+        .nav {
+          min-height: auto;
+          padding: 12px 0;
+          align-items: start;
+          flex-direction: column;
+        }
+
+        .nav-links {
+          width: 100%;
+          flex-wrap: wrap;
+          overflow-x: visible;
+          padding-bottom: 0;
+        }
+
+        .nav-links a {
+          flex: 0 0 auto;
+          min-height: 34px;
+          padding: 0 10px;
+          font-size: 0.88rem;
+        }
+
+        .hero {
+          min-height: auto;
+          padding-top: 34px;
+        }
+
+        .metrics,
+        .skills-grid,
+        .projects-grid,
+        .timeline,
+        .archive-grid,
+        .experience-grid,
+        .site-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .section-head {
+          display: block;
+        }
+
+        .section-copy {
+          margin-top: 12px;
+        }
+
+        .project-media {
+          height: 210px;
+        }
+      }
     </style>
   </head>
   <body>
-    <header>
-      <nav class="nav-container">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#projects" class="nav-link">Projects</a>
+    <header class="topbar">
+      <nav class="shell nav" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="Vismay P home">
+          <span class="brand-mark">VP</span>
+          <span>Vismay P</span>
+        </a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#live-work">Live Work</a>
+          <a href="#contact">Contact</a>
+        </div>
       </nav>
     </header>
-    <div class="container">
-      <div class="content-sections">
-        <div class="animated-border"  id="about">
-          <div class="section-content">
-            <h1>Vismay P</h1>
-            <h3>About Me</h3>
-            <p>
-              I am a 4th year, under grad at NITK Surathkal pursing degree in Information
-              Technology. I specialize in web scraping and automation, with
-              expertise in tools like Selenium, Requests library, Scrapy, and
-              other essential technologies.
-            </p>
-            <p>
-              As a Full-Stack Developer, I am passionate about crafting
-              beautiful and functional web experiences. I excel in modern web
-              technologies and prioritize user-centric design. I am eager to
-              embrace new challenges and opportunities to grow.
-            </p>
+
+    <main id="top">
+      <section class="shell hero" aria-label="Portfolio introduction">
+        <div>
+          <div class="kicker">
+            <span class="status-dot"></span> Verint Software Engineer / NITK IT
+            Graduate
           </div>
-        </div>
-
-        <div class="animated-border" id="skills">
-          <div class="section-content">
-            <h3>Skills</h3>
-            <div class="skills">
-              <span class="skill">Web Scraping</span>
-              <span class="skill">Selenium</span>
-              <span class="skill">Requests</span>
-              <span class="skill">API</span>
-              <span class="skill">React</span>
-              <span class="skill">Node.js</span>
-              <span class="skill">Express</span>
-              <span class="skill">MongoDB</span>
-              <span class="skill">Python</span>
-              <span class="skill">Django</span>
-              <span class="skill">Postgres</span>
-              <span class="skill">XML</span>
-              <span class="skill">Flutter</span>
-              <span class="skill">Automation/Bots</span>
-
+          <h1><span class="glitch">Vismay P</span><br />automates work.</h1>
+          <p class="subtitle">
+            Software Engineer at Verint and NITK Surathkal IT graduate focused
+            on backend systems, cloud delivery, automation, desktop tooling,
+            AI-assisted learning products, and clean user experiences that turn
+            repetitive work into reliable software.
+          </p>
+          <div class="hero-strip" aria-label="Professional highlights">
+            <span
+              ><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+              NITK Surathkal</span
+            >
+            <span
+              ><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Software
+              Engineer @ Verint</span
+            >
+            <span
+              ><i class="fa-solid fa-cloud" aria-hidden="true"></i> AWS /
+              Kubernetes / Harness</span
+            >
+          </div>
+          <div class="actions" aria-label="Primary links">
+            <a class="button primary" href="#projects">
+              <i class="fa-solid fa-terminal" aria-hidden="true"></i>
+              View Projects
+            </a>
+            <a
+              class="button"
+              href="https://github.com/Vismayp"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+              GitHub
+            </a>
+            <a
+              class="button"
+              href="https://www.linkedin.com/in/vismay-p-a5a061223/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+              LinkedIn
+            </a>
+          </div>
+          <div class="metrics" aria-label="Profile highlights">
+            <div class="metric">
+              <strong>Now</strong>
+              <span
+                >Verint full-time engineering across GoLang backend services, AI
+                bots, .NET 10, and cloud delivery</span
+              >
+            </div>
+            <div class="metric">
+              <strong>Grad</strong>
+              <span>B.Tech Information Technology, NITK Surathkal</span>
+            </div>
+            <div class="metric">
+              <strong>Core</strong>
+              <span
+                >Backend APIs, React products, Electron tools, automation,
+                CI/CD, and live websites</span
+              >
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="profile-section">
-        <div class="image-container">
-          <img src="images/profile.jpg" alt="Profile" class="profile-image" />
+        <aside class="portrait-frame" aria-label="Cyberpunk profile portrait">
+          <div class="portrait">
+            <img
+              src="images/profile-cyberpunk.png"
+              alt="Cyberpunk portrait of Vismay P"
+            />
+          </div>
+          <div class="id-card">
+            <small>Operator profile</small>
+            <strong>Automation-first software engineer</strong>
+            <p>
+              Fast with backend APIs, AI bots, cloud delivery, Electron apps,
+              dashboards, and deployed web products.
+            </p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="shell" id="about">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">About</span>
+            <h2>Graduate engineer with a maker streak.</h2>
+          </div>
+          <p class="section-copy">
+            I like building tools that remove manual drag: wiring APIs together,
+            designing usable web apps, packaging desktop workflows, automating
+            production checks, and shipping quick prototypes into live products.
+          </p>
         </div>
-        <div class="social-icons">
-          <!-- <a
-            href="https://www.linkedin.com/in/vismay-p-a5a061223/"
-            class="social-icon linkedin"
-            target="_blank"
-          > -->
-            <!-- <i class="fab fa-linkedin"></i> -->
-          </a>
+        <div class="about-grid">
+          <article class="panel">
+            <h3>Current Focus</h3>
+            <p>
+              I build around practical problems: backend systems that need to be
+              reliable, production checks that should not be manual, internal
+              tools that need packaging, and apps that need a clean path from
+              idea to deployment. My strongest lane is the overlap between
+              automation, APIs, cloud delivery, and product-ready interfaces.
+            </p>
+          </article>
+          <article class="panel">
+            <h3>Signals</h3>
+            <ul class="signal-list">
+              <li>
+                B.Tech Information Technology graduate from NITK Surathkal.
+              </li>
+              <li>
+                Software Engineer at Verint working on backend AI bot systems,
+                .NET 10 projects, and cloud delivery.
+              </li>
+              <li>
+                Cloud exposure across AWS, Kubernetes, and Harness-driven CI/CD
+                workflows.
+              </li>
+              <li>
+                Recent GitHub activity spans React/Vite, Node/Express, Prisma,
+                Firebase, Electron, Vercel, and client websites.
+              </li>
+              <li>
+                Earlier Verint internship covered Python and DevOps automation
+                for production patching checks.
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="shell" id="experience">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Experience</span>
+            <h2>Current production lane.</h2>
+          </div>
+          <p class="section-copy">
+            The portfolio now leads with the work that is most current:
+            full-time software engineering, backend systems, AI bot, cloud
+            exposure, and the automation foundation from the earlier Verint
+            internship.
+          </p>
+        </div>
+        <div class="experience-grid">
+          <article class="panel">
+            <h3>Software Engineer - Verint</h3>
+            <div class="role-meta">
+              <span>Full-time</span>
+              <span>Jun 2025 - Present</span>
+              <span>Bengaluru / Hybrid</span>
+            </div>
+            <p>
+              Working on backend services for an AI bot and .NET 10 projects,
+              with practical exposure to AWS, Kubernetes, and CI/CD delivery
+              through Harness.
+            </p>
+          </article>
+          <article class="panel">
+            <h3>Software Intern - Verint</h3>
+            <div class="role-meta">
+              <span>Internship</span>
+              <span>May 2024 - Jul 2024</span>
+              <span>Bengaluru / On-site</span>
+            </div>
+            <p>
+              Built Python and DevOps automation for pre and post checks during
+              production patching workflows, reducing repetitive validation
+              effort and improving operational reliability.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="shell" id="skills">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Skills</span>
+            <h2>Best tools in the loadout.</h2>
+          </div>
+          <p class="section-copy">
+            Expanded from the last 6-8 months of GitHub activity: CodeBuzz,
+            EcoVerseX, ZaTimer, SSIPU, ABB, attendance tooling, and live client
+            web work.
+          </p>
+        </div>
+        <div class="skills-grid">
+          <article class="panel skill-block">
+            <h3>Backend & APIs</h3>
+            <div class="chips">
+              <span class="chip">Golang</span>
+              <span class="chip">.NET 10</span>
+              <span class="chip">Node.js</span>
+              <span class="chip">Express</span>
+              <span class="chip">REST APIs</span>
+              <span class="chip">Prisma</span>
+              <span class="chip">PostgreSQL</span>
+              <span class="chip">Firebase Auth</span>
+            </div>
+          </article>
+          <article class="panel skill-block">
+            <h3>Automation & Desktop</h3>
+            <div class="chips">
+              <span class="chip">Python</span>
+              <span class="chip">Electron</span>
+              <span class="chip">Selenium</span>
+              <span class="chip">Requests</span>
+              <span class="chip">Offline Sync</span>
+              <span class="chip">Watchdogs</span>
+              <span class="chip">Schedulers</span>
+            </div>
+          </article>
+          <article class="panel skill-block">
+            <h3>Frontend Products</h3>
+            <div class="chips">
+              <span class="chip">React</span>
+              <span class="chip">React 19</span>
+              <span class="chip">Vite</span>
+              <span class="chip">Framer Motion</span>
+              <span class="chip">React Router</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">Responsive UI</span>
+            </div>
+          </article>
+          <article class="panel skill-block">
+            <h3>Cloud & Delivery</h3>
+            <div class="chips">
+              <span class="chip">AWS</span>
+              <span class="chip">Kubernetes</span>
+              <span class="chip">Harness</span>
+              <span class="chip">CI/CD</span>
+              <span class="chip">Vercel</span>
+              <span class="chip">PM2</span>
+              <span class="chip">Electron Builder</span>
+            </div>
+          </article>
+          <article class="panel skill-block">
+            <h3>AI & Learning Tools</h3>
+            <div class="chips">
+              <span class="chip">AI Bot Backend</span>
+              <span class="chip">Markdown Rendering</span>
+              <span class="chip">KaTeX</span>
+              <span class="chip">Mermaid</span>
+              <span class="chip">Syntax Highlighting</span>
+              <span class="chip">Gemini Workflows</span>
+            </div>
+          </article>
+          <article class="panel skill-block">
+            <h3>Product Surface</h3>
+            <div class="chips">
+              <span class="chip">Chrome Extensions</span>
+              <span class="chip">Telegram Bots</span>
+              <span class="chip">Flutter</span>
+              <span class="chip">Firebase</span>
+              <span class="chip">Client Websites</span>
+              <span class="chip">Live Websites</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="shell" id="projects">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Selected GitHub Projects</span>
+            <h2>Work worth opening.</h2>
+          </div>
+          <p class="section-copy">
+            Chosen from public and private GitHub activity, with preference for
+            the last 6-8 months and for projects that demonstrate a specific
+            skill lane: backend APIs, React products, Electron tooling,
+            automation, cloud delivery, and deployed client work.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="images/project-codebuzz.png"
+                alt="CodeBuzz Revise live website screenshot"
+              />
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <h3 class="project-title">CodeBuzz Revise</h3>
+                <span class="project-tag">React / Vite</span>
+              </div>
+              <p>
+                Developer knowledge hub live on Vercel with React 19, Vite,
+                markdown lessons, math rendering, Mermaid diagrams, syntax
+                highlighting, routing, and analytics.
+              </p>
+              <div class="project-focus">
+                <span>Frontend Products</span>
+                <span>AI Learning Tools</span>
+                <span>Vercel</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/Vismayp/CodeBuzz-Revise"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <i class="fa-brands fa-github"></i> Repo
+                </a>
+                <a
+                  href="https://code-buzz-revise.vercel.app"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="images/project-ssipu.png"
+                alt="SSIPU live website screenshot"
+              />
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <h3 class="project-title">SSIPU Website</h3>
+                <span class="project-tag">Live Site</span>
+              </div>
+              <p>
+                Deployed website for Sree Siddaganga Integrated PU College,
+                focused on a polished school presence, clear information
+                architecture, responsive pages, and production deployment.
+              </p>
+              <div class="project-focus">
+                <span>Client Websites</span>
+                <span>Responsive UI</span>
+                <span>Delivery</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://www.ssipu.org/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="images/project-zatimer.png"
+                alt="Representative ZaTimer desktop tooling preview"
+              />
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <h3 class="project-title">ZaTimer Tool</h3>
+                <span class="project-tag">Electron</span>
+              </div>
+              <p>
+                Private desktop productivity and attendance tooling with
+                Electron, central server sync, watchdog checks, packaged Windows
+                builds, config fallbacks, user reports, and production
+                troubleshooting.
+              </p>
+              <div class="project-focus">
+                <span>Automation & Desktop</span>
+                <span>Cloud Delivery</span>
+                <span>Backend APIs</span>
+              </div>
+              <div class="project-links">
+                <a href="#contact">
+                  <i class="fa-solid fa-lock"></i> Private Case Study
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="images/project-ecoversex.png"
+                alt="Representative EcoVerseX full stack platform preview"
+              />
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <h3 class="project-title">EcoVerseX Platform</h3>
+                <span class="project-tag">Full Stack</span>
+              </div>
+              <p>
+                Multi-repo private product with app, admin, and backend work:
+                user onboarding, Firebase-authenticated flows, Prisma-backed
+                APIs, admin seeding, roles, and data-driven product screens.
+              </p>
+              <div class="project-focus">
+                <span>Backend APIs</span>
+                <span>Frontend Products</span>
+                <span>Firebase</span>
+              </div>
+              <div class="project-links">
+                <a href="#contact">
+                  <i class="fa-solid fa-lock"></i> Private Case Study
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="images/project-conversation-exporter.png"
+                alt="Representative ChatGPT exporter workflow preview"
+              />
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <h3 class="project-title">ConversationExporter ChatGPT</h3>
+                <span class="project-tag">Extension</span>
+              </div>
+              <p>
+                Chrome extension that parses ChatGPT conversations and exports
+                them as polished HTML, Markdown, and PDF documents with image
+                handling and long-form conversation cleanup.
+              </p>
+              <div class="project-focus">
+                <span>Product Surface</span>
+                <span>Automation</span>
+                <span>JavaScript</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/Vismayp/ConversationExporter-ChatGPT"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <i class="fa-brands fa-github"></i> Repo
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="images/project-zaattendance.png"
+                alt="Representative ZaAttendance biometric dashboard preview"
+              />
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <h3 class="project-title">ZaAttendance Suite</h3>
+                <span class="project-tag">Dashboard</span>
+              </div>
+              <p>
+                Private dashboard and service work around biometric attendance,
+                device data, reporting, and operational visibility for
+                real-world attendance workflows.
+              </p>
+              <div class="project-focus">
+                <span>Backend APIs</span>
+                <span>Dashboards</span>
+                <span>Automation</span>
+              </div>
+              <div class="project-links">
+                <a href="#contact">
+                  <i class="fa-solid fa-lock"></i> Private Case Study
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="images/project-mathmcq.png"
+                alt="Representative Math MCQ platform preview"
+              />
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <h3 class="project-title">MathMCQ Platform</h3>
+                <span class="project-tag">Education</span>
+              </div>
+              <p>
+                Recent education platform work with responsive UI improvements,
+                quiz-style workflows, and the same learning-product direction
+                that shows up in CodeBuzz.
+              </p>
+              <div class="project-focus">
+                <span>AI Learning Tools</span>
+                <span>Frontend Products</span>
+                <span>Responsive UI</span>
+              </div>
+              <div class="project-links">
+                <a href="#contact">
+                  <i class="fa-solid fa-lock"></i> Private Case Study
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-media">
+              <img
+                src="images/project-client-sites.png"
+                alt="Representative client website delivery preview"
+              />
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <h3 class="project-title">ABB New Web & Client Sites</h3>
+                <span class="project-tag">Web Delivery</span>
+              </div>
+              <p>
+                Recent private client-site work across ABB, travel, rental, and
+                brand websites, focused on shipping usable pages, media updates,
+                service flows, and live deployment fixes.
+              </p>
+              <div class="project-focus">
+                <span>Client Websites</span>
+                <span>Vercel</span>
+                <span>Delivery</span>
+              </div>
+              <div class="project-links">
+                <a href="#live-work">
+                  <i class="fa-solid fa-arrow-down"></i> Live Work
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="shell" id="live-work">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Live Web Work</span>
+            <h2>Sites currently online.</h2>
+          </div>
+          <p class="section-copy">
+            A separate lane for deployed website work: education, developer
+            learning, transport, fleet rental, and brand/company pages that are
+            live and reachable today.
+          </p>
+        </div>
+        <div class="site-grid">
+          <article class="site-card">
+            <div>
+              <h3>SSIPU</h3>
+              <p>
+                Sree Siddaganga Integrated PU College website with a clean
+                institutional presence and live production deployment.
+              </p>
+            </div>
+            <a href="https://www.ssipu.org/" target="_blank" rel="noreferrer">
+              <i
+                class="fa-solid fa-arrow-up-right-from-square"
+                aria-hidden="true"
+              ></i>
+              Visit Site
+            </a>
+          </article>
+          <article class="site-card">
+            <div>
+              <h3>CodeBuzz Revise</h3>
+              <p>
+                Developer knowledge hub for revision content, diagrams, math
+                rendering, syntax highlighting, and structured technical
+                learning.
+              </p>
+            </div>
+            <a
+              href="https://code-buzz-revise.vercel.app/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i
+                class="fa-solid fa-arrow-up-right-from-square"
+                aria-hidden="true"
+              ></i>
+              Visit Site
+            </a>
+          </article>
+          <article class="site-card">
+            <div>
+              <h3>Urbania Rentals Bangalore</h3>
+              <p>
+                Premium Force Urbania van rental site for corporate events,
+                weddings, group travel, packages, and booking inquiries.
+              </p>
+            </div>
+            <a
+              href="https://urbaniarentalsbangalore.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i
+                class="fa-solid fa-arrow-up-right-from-square"
+                aria-hidden="true"
+              ></i>
+              Visit Site
+            </a>
+          </article>
+          <article class="site-card">
+            <div>
+              <h3>Buszonrent</h3>
+              <p>
+                Luxury fleet operator website with quote flows, service
+                categories, fleet pages, and customer trust sections.
+              </p>
+            </div>
+            <a href="https://buszonrent.com/" target="_blank" rel="noreferrer">
+              <i
+                class="fa-solid fa-arrow-up-right-from-square"
+                aria-hidden="true"
+              ></i>
+              Visit Site
+            </a>
+          </article>
+          <article class="site-card">
+            <div>
+              <h3>TLNB Services LLP</h3>
+              <p>
+                Company presence for TLNB Services LLP, positioning fashion and
+                agriculture brands under one sustainability-focused profile.
+              </p>
+            </div>
+            <a href="https://www.tlnb.in/" target="_blank" rel="noreferrer">
+              <i
+                class="fa-solid fa-arrow-up-right-from-square"
+                aria-hidden="true"
+              ></i>
+              Visit Site
+            </a>
+          </article>
+          <article class="site-card">
+            <div>
+              <h3>Luxury Car Rentals Bangalore</h3>
+              <p>
+                Grand Luxe Rides luxury chauffeur and rental website for
+                high-end car bookings in Bangalore.
+              </p>
+            </div>
+            <a
+              href="https://luxurycarrentalsbangalore.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i
+                class="fa-solid fa-arrow-up-right-from-square"
+                aria-hidden="true"
+              ></i>
+              Visit Site
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <section class="shell">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Automation Archive</span>
+            <h2>Older builds, sharper story.</h2>
+          </div>
+          <p class="section-copy">
+            The earlier portfolio projects still matter, but they read better as
+            capability signals: data extraction, form automation, media tooling,
+            notification systems, and learning apps.
+          </p>
+        </div>
+        <div class="archive-grid">
+          <article class="archive-item">
+            <div>
+              <i class="fa-solid fa-database" aria-hidden="true"></i>
+              <h3>Rental & Catalog Scrapers</h3>
+              <p>
+                Property, clothing, and e-commerce extraction workflows that
+                collect structured CSV-ready datasets.
+              </p>
+            </div>
+          </article>
+          <article class="archive-item">
+            <div>
+              <i class="fa-solid fa-file-invoice" aria-hidden="true"></i>
+              <h3>Invoice Automation</h3>
+              <p>
+                Download and reconciliation flows for invoice and GST-style data
+                across authenticated web portals.
+              </p>
+            </div>
+          </article>
+          <article class="archive-item">
+            <div>
+              <i class="fa-solid fa-robot" aria-hidden="true"></i>
+              <h3>Reservation & Alert Bots</h3>
+              <p>
+                Timed triggers and Telegram notifications for court bookings,
+                game monitors, and availability checks.
+              </p>
+            </div>
+          </article>
+          <article class="archive-item">
+            <div>
+              <i class="fa-solid fa-image" aria-hidden="true"></i>
+              <h3>Media & Image Tools</h3>
+              <p>
+                Album downloaders, review collectors, and Django-based image
+                conversion and editing utilities.
+              </p>
+            </div>
+          </article>
+          <article class="archive-item">
+            <div>
+              <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+              <h3>AI Answer Workflows</h3>
+              <p>
+                Gemini-assisted answer generation pipelines that format large
+                batches of model exam responses.
+              </p>
+            </div>
+          </article>
+          <article class="archive-item">
+            <div>
+              <i
+                class="fa-solid fa-mobile-screen-button"
+                aria-hidden="true"
+              ></i>
+              <h3>Mobile Learning Apps</h3>
+              <p>
+                Flutter-based CricNews and multiplication practice experiments
+                with quizzes, timers, and app flows.
+              </p>
+            </div>
+          </article>
+          <article class="archive-item">
+            <div>
+              <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
+              <h3>Algorithm Visuals</h3>
+              <p>
+                Sorting visualizer and practice interfaces built to make core
+                computer science concepts easier to scan.
+              </p>
+            </div>
+          </article>
+          <article class="archive-item">
+            <div>
+              <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+              <h3>Form Fill Systems</h3>
+              <p>
+                Excel-driven web form automation with application tracking, CSV
+                exports, and error logging.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <div class="shell footer-row">
+        <p>Designed and built by Vismay P.</p>
+        <div>
           <a
+            class="mini-link"
             href="https://github.com/Vismayp"
-            class="social-icon github"
             target="_blank"
+            rel="noreferrer"
           >
-            <i class="fab fa-github"></i>
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
+            GitHub
           </a>
-          <!-- <a
-            href="https://www.instagram.com/vismayp992"
-            class="social-icon instagram"
-            target="_blank"
-          >
-            <i class="fab fa-instagram"></i>
-          </a> -->
-          <!-- Commented out WhatsApp icon
           <a
-            href="https://wa.me/+919008102705"
-            class="social-icon whatsapp"
+            class="mini-link"
+            href="https://www.linkedin.com/in/vismay-p-a5a061223/"
             target="_blank"
+            rel="noreferrer"
           >
-            <i class="fab fa-whatsapp"></i>
+            <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+            LinkedIn
           </a>
-          -->
         </div>
       </div>
-
-      <div class="animated-border projects-section" id="projects">
-        <div class="section-content">
-          <h3>Projects</h3>
-          <div class="project-grid">
-            <div class="project-card">
-              <div class="project-content">
-                <img
-                  src="images/Badmiton.jpg"
-                  alt="Project 1"
-                  class="project-image"
-                />
-                <h4 class="project-title">Badmiton Court Reservation Bot</h4>
-                <p class="project-description">
-                  Automated data extraction tool built with Python and Selenium.
-                  Uses scheduler to schedule the trigger when the court is available.
-                  Books the court within split seconds when available.
-                </p>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-content">
-                <img
-                  src="images/Rentals.jpg"
-                  alt="Project 2"
-                  class="project-image"
-                />
-                <h4 class="project-title">Rental Properties Scrapping</h4>
-                <p class="project-description">
-                  Scrapped 4000+ properties from the site and gather all the details and return the scrapped information in csv
-                </p>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-content">
-                <img
-                  src="images/GST Automation.jpg"
-                  alt="Project 3"
-                  class="project-image"
-                />
-                <h4 class="project-title">Invoices Downloader</h4>
-                <p class="project-description">
-                  Built an Application that has OTP Verification and scrapes invoices data from various Ecommerce Sites and also Downloads GSTR dataa from the government website bypassing captcha
-                </p>
-              </div>
-            </div>
-            <div class="project-card">
-              <div class="project-content">
-                <img
-                  src="images/Clothing.jpg"
-                  alt="Project 3"
-                  class="project-image"
-                />
-                <h4 class="project-title">Clothing Scrapper</h4>
-                <p class="project-description">
-                  Clothing Websites scrapping to gather all the necessary information along with the images and return the csv file.
-                </p>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-content">
-                <img
-                  src="images/Multiplier.jpg"
-                  alt="Project 3"
-                  class="project-image"
-                />
-                <h4 class="project-title">Multiplier Bot</h4>
-                <p class="project-description">
-                  Created a Multiplier Bot that will monitor a game in a website and trigger a telegram bot to send notification when specific condition is met
-                </p>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-content">
-                <img
-                  src="images/Esty.jpg"
-                  alt="Project 3"
-                  class="project-image"
-                />
-                <h4 class="project-title">Esty Review Downloader</h4>
-                <p class="project-description">
-                  Created a Script that will take product link as input and Scrapes the entire review section of the product
-                </p>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-content">
-                <img
-                  src="images/Yupoo.jpg"
-                  alt="Project 3"
-                  class="project-image"
-                />
-                <h4 class="project-title">Yupoo Album Downloader</h4>
-                <p class="project-description">
-                  The Script that takes the Album Link as input and download all the Album images locally.
-                </p>
-              </div>
-            </div>
-
-
-            <div class="project-card">
-              <div class="project-content">
-                <img
-                  src="images/fasalrin.jpg"
-                  alt="Project 3"
-                  class="project-image"
-                />
-                <h4 class="project-title">FasalRin Automation</h4>
-                <p class="project-description">
-                  Wrote the Automation Script that fills the Information Automatically by taking information from the input excel and upon successful submission stores the application number in a csv with error logs
-                </p>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-content">
-                <img
-                  src="images/image_editor.jpg"
-                  alt="Project 3"
-                  class="project-image"
-                />
-                <h4 class="project-title">Enhanced Image Editor</h4>
-                <p class="project-description">
-                  Built Custom Enhanced Image Editor that supports conversion of images to different formats resizing and editing images using python and django
-                </p>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-content">
-                <img
-                  src="images/quiz.jpg"
-                  alt="Project 3"
-                  class="project-image"
-                />
-                <h4 class="project-title">Quizzer Web App</h4>
-                <p class="project-description">
-                  Built Custom quiz generator app that uses Gemini AI to build custom questions in realtime and one can take MCQ Quiz with the preset timer. The website is live on vercel
-                </p>
-              </div>
-            </div>
-
-
-            <div class="project-card">
-              <div class="project-content">
-                <img
-                  src="images/Gemini.jpg"
-                  alt="Project 3"
-                  class="project-image"
-                />
-                <h4 class="project-title">Auto Answer Generator (Exam)</h4>
-                <p class="project-description">
-                  Wrote a python script that uploads the Model Exam Questions to Gemini and gets all the questions answered with Gemini Pro and Stores the response in a document of spectic template. Answer key generated for around 800+ papers  
-                </p>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-content">
-                <img
-                  src="images/Multiplication.jpg"
-                  alt="Project 3"
-                  class="project-image"
-                />
-                <h4 class="project-title">Multiplication Practice App</h4>
-                <p class="project-description">
-                  A flutter app built for kids to practice multiplication with various levels of difficulty and present timer. Live in Playstore.
-                </p>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-content">
-                <img
-                  src="images/CricNews.jpg"
-                  alt="Project 3"
-                  class="project-image"
-                />
-                <h4 class="project-title">CricNews App</h4>
-                <p class="project-description">
-                  A flutter app built for for Publishing News and has UPI Intergration along with Freemium Model. Used for Publishing Cricket News and Conduct Polls works under Freemium Model.
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <footer>
-      <p class="footer-text">Created with ❤️ by Vismay</p>
     </footer>
   </body>
 </html>
-
