@@ -158,6 +158,10 @@
         gap: 8px;
       }
 
+      .section-indicator {
+        display: none;
+      }
+
       .nav-links a,
       .mini-link {
         min-height: 38px;
@@ -806,13 +810,22 @@
       }
 
       @media (max-width: 980px) {
+        .shell {
+          width: min(100% - 28px, 1180px);
+        }
+
         .hero,
         .about-grid {
           grid-template-columns: 1fr;
         }
 
+        .hero {
+          gap: 34px;
+          padding-top: 40px;
+        }
+
         .portrait-frame {
-          width: min(520px, 100%);
+          width: min(460px, 100%);
           margin: 0 auto;
         }
 
@@ -827,34 +840,160 @@
       }
 
       @media (max-width: 680px) {
+        body {
+          background:
+            radial-gradient(
+              circle at 20% 6%,
+              rgba(0, 245, 255, 0.14),
+              transparent 18rem
+            ),
+            radial-gradient(
+              circle at 90% 36%,
+              rgba(255, 43, 214, 0.12),
+              transparent 18rem
+            ),
+            linear-gradient(180deg, #03040a 0%, var(--bg) 54%, #080510 100%);
+        }
+
+        body::before {
+          background-size: 34px 34px;
+        }
+
         .shell {
-          width: min(100% - 22px, 1180px);
+          width: min(100% - 28px, 1180px);
         }
 
         .nav {
           min-height: auto;
-          padding: 12px 0;
-          align-items: start;
-          flex-direction: column;
+          padding: 10px 0 12px;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+        }
+
+        .brand,
+        .nav-links {
+          display: none;
+        }
+
+        .section-indicator {
+          min-height: 38px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          padding: 0 14px;
+          border: 1px solid rgba(0, 245, 255, 0.32);
+          border-radius: 6px;
+          background: rgba(0, 245, 255, 0.08);
+          color: var(--cyan);
+          font:
+            800 0.8rem/1 ui-monospace,
+            SFMono-Regular,
+            Consolas,
+            monospace;
+          text-transform: uppercase;
+          text-align: center;
+        }
+
+        .section-indicator::before {
+          content: "";
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: var(--lime);
+          box-shadow: 0 0 18px var(--lime);
+        }
+
+        .brand {
+          gap: 10px;
+          font-size: 1.02rem;
+          white-space: nowrap;
+        }
+
+        .brand-mark {
+          width: 34px;
+          height: 34px;
+          font-size: 0.88rem;
         }
 
         .nav-links {
-          width: 100%;
+          width: auto;
+          justify-content: flex-end;
           flex-wrap: wrap;
           overflow-x: visible;
           padding-bottom: 0;
+          gap: 6px;
         }
 
         .nav-links a {
           flex: 0 0 auto;
-          min-height: 34px;
-          padding: 0 10px;
-          font-size: 0.88rem;
+          min-height: 32px;
+          padding: 0 9px;
+          font-size: 0.82rem;
         }
 
         .hero {
           min-height: auto;
-          padding-top: 34px;
+          gap: 30px;
+          padding: 30px 0 24px;
+        }
+
+        .kicker {
+          max-width: 100%;
+          margin-bottom: 18px;
+          padding: 7px 10px;
+          font-size: 0.68rem;
+          line-height: 1.35;
+          white-space: normal;
+        }
+
+        h1 {
+          font-size: clamp(2.55rem, 14vw, 4.35rem);
+          line-height: 0.94;
+          overflow-wrap: anywhere;
+        }
+
+        .glitch {
+          text-shadow:
+            2px 0 rgba(255, 43, 214, 0.68),
+            -2px 0 rgba(0, 245, 255, 0.64);
+        }
+
+        .subtitle {
+          margin: 20px 0 22px;
+          font-size: 1rem;
+          line-height: 1.62;
+        }
+
+        .hero-strip {
+          gap: 8px;
+          margin: -4px 0 22px;
+        }
+
+        .hero-strip span {
+          min-height: 31px;
+          padding: 0 9px;
+          font-size: 0.68rem;
+        }
+
+        .actions {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+          margin-bottom: 22px;
+        }
+
+        .button {
+          width: 100%;
+          min-height: 46px;
+          padding: 0 12px;
+          gap: 8px;
+          font-size: 0.94rem;
+        }
+
+        .button.primary {
+          grid-column: 1 / -1;
         }
 
         .metrics,
@@ -875,8 +1014,125 @@
           margin-top: 12px;
         }
 
+        section {
+          scroll-margin-top: 112px;
+          padding: 38px 0;
+        }
+
+        h2 {
+          font-size: clamp(1.72rem, 10vw, 2.45rem);
+          line-height: 1.04;
+        }
+
+        .panel {
+          padding: 20px;
+        }
+
+        .metric {
+          min-height: auto;
+          padding: 16px;
+        }
+
+        .portrait-frame {
+          width: min(380px, 100%);
+        }
+
+        .portrait-frame::before {
+          inset: -10px;
+          filter: blur(10px);
+        }
+
+        .id-card {
+          width: min(92%, 340px);
+          margin-top: -42px;
+          padding: 16px;
+        }
+
+        .id-card strong {
+          font-size: 1.16rem;
+        }
+
         .project-media {
           height: 210px;
+        }
+
+        .project-body,
+        .site-card,
+        .archive-item {
+          padding: 16px;
+        }
+
+        .project-top {
+          display: block;
+        }
+
+        .project-title {
+          margin-bottom: 10px;
+        }
+
+        .project-tag {
+          display: inline-flex;
+        }
+
+        .project-links a,
+        .site-card a {
+          min-height: 38px;
+        }
+
+        .footer-row {
+          display: grid;
+          gap: 10px;
+        }
+      }
+
+      @media (max-width: 440px) {
+        .shell {
+          width: min(100% - 24px, 1180px);
+        }
+
+        .nav {
+          align-items: stretch;
+          flex-direction: row;
+        }
+
+        .nav-links {
+          display: none;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .nav-links a {
+          padding: 0 6px;
+          font-size: 0.78rem;
+        }
+
+        .kicker,
+        .hero-strip span,
+        .role-meta span,
+        .project-focus span {
+          width: 100%;
+          justify-content: center;
+          text-align: center;
+        }
+
+        h1 {
+          font-size: clamp(2.38rem, 13vw, 3.32rem);
+        }
+
+        .actions {
+          grid-template-columns: 1fr;
+        }
+
+        .button.primary {
+          grid-column: auto;
+        }
+
+        .project-media {
+          height: 190px;
+        }
+
+        .site-card,
+        .archive-item {
+          min-height: auto;
         }
       }
     </style>
@@ -888,6 +1144,13 @@
           <span class="brand-mark">VP</span>
           <span>Vismay P</span>
         </a>
+        <div
+          class="section-indicator"
+          aria-live="polite"
+          data-section-indicator
+        >
+          Home
+        </div>
         <div class="nav-links">
           <a href="#about">About</a>
           <a href="#experience">Experience</a>
@@ -900,7 +1163,11 @@
     </header>
 
     <main id="top">
-      <section class="shell hero" aria-label="Portfolio introduction">
+      <section
+        class="shell hero"
+        aria-label="Portfolio introduction"
+        data-section-name="Home"
+      >
         <div>
           <div class="kicker">
             <span class="status-dot"></span> Verint Software Engineer / NITK IT
@@ -988,7 +1255,7 @@
         </aside>
       </section>
 
-      <section class="shell" id="about">
+      <section class="shell" id="about" data-section-name="About">
         <div class="section-head">
           <div>
             <span class="eyebrow">About</span>
@@ -1038,7 +1305,7 @@
         </div>
       </section>
 
-      <section class="shell" id="experience">
+      <section class="shell" id="experience" data-section-name="Experience">
         <div class="section-head">
           <div>
             <span class="eyebrow">Experience</span>
@@ -1075,7 +1342,7 @@
         </div>
       </section>
 
-      <section class="shell" id="skills">
+      <section class="shell" id="skills" data-section-name="Skills">
         <div class="section-head">
           <div>
             <span class="eyebrow">Skills</span>
@@ -1157,7 +1424,7 @@
         </div>
       </section>
 
-      <section class="shell" id="projects">
+      <section class="shell" id="projects" data-section-name="Projects">
         <div class="section-head">
           <div>
             <span class="eyebrow">Selected GitHub Projects</span>
@@ -1428,7 +1695,7 @@
         </div>
       </section>
 
-      <section class="shell" id="live-work">
+      <section class="shell" id="live-work" data-section-name="Live Work">
         <div class="section-head">
           <div>
             <span class="eyebrow">Live Web Work</span>
@@ -1548,7 +1815,7 @@
         </div>
       </section>
 
-      <section class="shell">
+      <section class="shell" data-section-name="Automation Archive">
         <div class="section-head">
           <div>
             <span class="eyebrow">Automation Archive</span>
@@ -1643,7 +1910,7 @@
       </section>
     </main>
 
-    <footer id="contact">
+    <footer id="contact" data-section-name="Contact">
       <div class="shell footer-row">
         <p>Designed and built by Vismay P.</p>
         <div>
@@ -1668,5 +1935,57 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      (() => {
+        const indicator = document.querySelector("[data-section-indicator]");
+        const sections = [...document.querySelectorAll("[data-section-name]")];
+
+        if (!indicator || sections.length === 0) {
+          return;
+        }
+
+        let ticking = false;
+
+        const updateSectionName = () => {
+          const marker = Math.min(window.innerHeight * 0.32, 240);
+          let active = sections[0];
+
+          if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 2) {
+            indicator.textContent = sections[sections.length - 1].dataset.sectionName;
+            ticking = false;
+            return;
+          }
+
+          for (const section of sections) {
+            const rect = section.getBoundingClientRect();
+            if (rect.top <= marker && rect.bottom > marker) {
+              active = section;
+              break;
+            }
+
+            if (rect.top <= marker) {
+              active = section;
+            }
+          }
+
+          indicator.textContent = active.dataset.sectionName;
+          ticking = false;
+        };
+
+        const requestUpdate = () => {
+          if (ticking) {
+            return;
+          }
+
+          ticking = true;
+          window.requestAnimationFrame(updateSectionName);
+        };
+
+        updateSectionName();
+        window.addEventListener("scroll", requestUpdate, { passive: true });
+        window.addEventListener("resize", requestUpdate);
+      })();
+    </script>
   </body>
 </html>
